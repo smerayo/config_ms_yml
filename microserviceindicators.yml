@@ -1,0 +1,48 @@
+info:
+  component: indicadores app
+
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+server:
+  port: 8083
+
+spring:
+   config:
+      name:  microserviceindicators
+   application:
+      name:  microserviceindicators
+
+#configuración de logs
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+      hibernate: ERROR
+    guru:
+      springframework:
+        blogs:
+          controllers: INFO
+  file: logs/log.log
+log4j:
+  logger:
+    org:
+      thymeleaf: DEBUG
+
+
+eureka:
+  client:
+    serviceUrl:
+      #defaultZone: http://BPIEureka-1635971335.eu-central-1.elb.amazonaws.com/eureka
+      defaultZone: http://localhost:8762/eureka
+  instance:
+    statusPageUrlPath: /my_info
+    healthCheckUrlPath: /my_health
+    virtualHostName: microserviceindicators
+    metadataMap:
+      appOwner: Vanadis
+      descripction: Microservicio gestion indicadores y subindicadores
